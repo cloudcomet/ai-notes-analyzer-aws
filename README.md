@@ -1,28 +1,31 @@
-# 🧠 AI-Powered Smart Notes Analyzer
+# 🧠 InsightNotes
 
-An end-to-end serverless application that allows users to upload documents and interact with them through AI-powered summarization and question answering.
+**Turn documents into insights with AI**
+
+InsightNotes is an AI-powered web application that allows users to upload documents and interact with them through intelligent summarization and conversational querying. It transforms unstructured content into meaningful insights using modern cloud architecture and LLM APIs.
 
 ---
 
 ## 🚀 Features
 
 * 📄 Upload documents (PDF, DOCX, PPTX, TXT)
-* 🔍 Automatic text extraction using AWS backend
 * 🧠 AI-powered summarization
-* 💬 Chat with your documents
-* ☁️ Serverless processing pipeline (S3 + Lambda + EC2)
-* 🌐 Deployed with custom domain and HTTPS
+* 💬 Chat with your documents (context-aware)
+* 🕘 Persistent chat history (saved on cloud)
+* 📂 Resume previous sessions from sidebar
+* ⚡ Fast document processing pipeline
+* 🎨 Clean, modern UI (Streamlit-based)
 
 ---
 
 ## 🏗️ Architecture
 
-```
+```plaintext
 User Upload → AWS S3 → Lambda Trigger → EC2 Processing → S3 (Processed Text)
                                       ↓
                                  Streamlit App
                                       ↓
-                               AI API (OpenRouter)
+                              AI API (OpenRouter)
 ```
 
 ---
@@ -31,40 +34,34 @@ User Upload → AWS S3 → Lambda Trigger → EC2 Processing → S3 (Processed T
 
 ### Frontend
 
-* Streamlit
+* Streamlit (Python)
 
 ### Backend
 
 * Python
 
-### Cloud Services
+### Cloud Services (AWS)
 
-* AWS S3 (Storage)
-* AWS Lambda (Trigger)
-* AWS EC2 (Processing + Hosting)
-* AWS SSM (Remote execution)
+* S3 → Storage (uploads + processed + history)
+* Lambda → Trigger processing
+* EC2 → File parsing + app hosting
+* SSM → Remote execution
 
 ### AI Integration
 
-* OpenRouter API (LLM inference)
-
-### Deployment
-
-* Caddy (Reverse Proxy + HTTPS)
-* Docker (optional)
+* OpenRouter API (LLM for summarization + Q&A)
 
 ---
 
 ## 📂 Project Structure
 
-```
+```plaintext
 notes-app/
 │
-├── app.py              # Streamlit frontend
-├── ai_module.py        # AI integration (OpenRouter)
-├── process.py          # File parsing + extraction
+├── app.py              # Main frontend (UI + logic)
+├── ai_module.py        # AI API integration
+├── process.py          # File parsing (PDF, DOCX, PPTX, TXT)
 ├── requirements.txt
-├── Dockerfile
 ├── .env                # Environment variables (NOT pushed)
 ├── .gitignore
 └── README.md
@@ -74,37 +71,37 @@ notes-app/
 
 ## ⚙️ Setup Instructions
 
-### 1. Clone Repository
+### 1️⃣ Clone Repository
 
-```
-git clone https://github.com/YOUR_USERNAME/smart-notes-analyzer.git
-cd smart-notes-analyzer
+```bash
+git clone https://github.com/YOUR_USERNAME/insightnotes.git
+cd insightnotes
 ```
 
 ---
 
-### 2. Create Virtual Environment
+### 2️⃣ Create Virtual Environment
 
-```
+```bash
 python3 -m venv venv
 source venv/bin/activate
 ```
 
 ---
 
-### 3. Install Dependencies
+### 3️⃣ Install Dependencies
 
-```
+```bash
 pip install -r requirements.txt
 ```
 
 ---
 
-### 4. Setup Environment Variables
+### 4️⃣ Configure Environment Variables
 
 Create a `.env` file:
 
-```
+```env
 OPENROUTER_API_KEY=your_api_key
 S3_BUCKET_NAME=your_bucket_name
 AWS_REGION=ap-south-1
@@ -112,67 +109,57 @@ AWS_REGION=ap-south-1
 
 ---
 
-### 5. Run Application
+### 5️⃣ Run Application
 
-```
+```bash
 streamlit run app.py
 ```
 
 ---
 
-## 🐳 Docker (Optional)
-
-Build and run:
-
-```
-docker build -t notes-app .
-docker run -p 8501:8501 --env-file .env notes-app
-```
-
----
-
-## 🌐 Deployment
+## ☁️ Deployment
 
 * Hosted on AWS EC2
-* Reverse proxy using Caddy
-* Automatic HTTPS enabled
+* Reverse proxy using Caddy (HTTPS enabled)
+* Domain configured for public access
+* Secure backend (localhost binding)
 
 ---
 
 ## 🔐 Security Practices
 
-* Environment variables for secrets
-* IAM roles for AWS access
-* Internal service isolation (localhost binding)
-* No direct exposure of backend services
+* Environment variables for sensitive data
+* IAM roles for AWS access (no hardcoded keys)
+* Reverse proxy to hide internal services
+* No direct exposure of backend ports
 
 ---
 
-## 🎯 Future Improvements
+## 🎯 Future Enhancements
 
-* Vector database for semantic search
-* Better document chunking
-* Multi-document chat
-* User authentication
-* UI enhancements
+* 🔍 Semantic search (RAG)
+* ✨ Highlight answers inside documents
+* 👥 Multi-user authentication
+* 📊 Analytics dashboard
+* 📁 Multi-document support
 
 ---
 
 ## 💡 Key Learnings
 
-* Serverless architecture design
-* Cloud service integration (AWS)
-* Handling large file processing pipelines
-* API-based AI integration
-* Deployment and production optimization
+* Cloud-based system design (AWS)
+* Serverless processing pipelines
+* LLM integration using APIs
+* Session persistence using S3
+* UI/UX design with Streamlit
 
 ---
 
 ## 📌 Author
 
-Aum Vinod Singh
+**Aum Vinod Singh**
 B.E. Artificial Intelligence & Data Science
 
 ---
 
-## ⭐ If you like this project, consider giving it a star!
+## ⭐ If you like this project, give it a star!
